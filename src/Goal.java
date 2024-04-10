@@ -10,4 +10,16 @@ public class Goal {
         this.name = name;
         this.premium = premium;
     }
+
+    static int getCurrentMonth() {
+        return LocalDate.now().getMonthValue();
+    }
+
+    static int getCurrentYear() {
+        return LocalDate.now().getYear();
+    }
+
+    boolean isAchievedThisMonth() {
+        return (date.getYear() == getCurrentYear()) && (date.getMonthValue() == getCurrentMonth());
+    }
 }

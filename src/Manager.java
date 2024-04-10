@@ -1,4 +1,3 @@
-import java.time.LocalDate;
 import java.util.ArrayList;
 
 public class Manager extends Employee {
@@ -12,15 +11,14 @@ public class Manager extends Employee {
         assignedGoals.add(goal);
     }
 
-    static int getCurrentMonth() {
-        return LocalDate.now().getMonthValue();
+    int calculateGoalsPremium() {
+        return assignedGoals.stream()
+                .mapToInt(obj -> obj.isAchievedThisMonth() ? obj.premium : 0)
+                .sum();
     }
 
     @Override
     int calculateSalary() {
-        return super.calculateSalary() +
-                assignedGoals.stream()
-                        .mapToInt(obj -> obj.date.getMonthValue() == getCurrentMonth() ? obj.premium : 0)
-                        .sum();
+        return super.calculateSalary() + calculateGoalsPremium();
     }
 }
