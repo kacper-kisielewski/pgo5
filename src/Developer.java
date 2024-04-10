@@ -10,4 +10,12 @@ public class Developer extends Employee {
     void addTechnology(Technology technology) {
         assignedTechnologies.add(technology);
     }
+
+    @Override
+    int calculateSalary() {
+        return super.calculateSalary() +
+                assignedTechnologies.stream()
+                        .mapToInt(obj -> obj.premium)
+                        .sum();
+    }
 }

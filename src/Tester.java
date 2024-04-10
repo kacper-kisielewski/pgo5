@@ -10,4 +10,9 @@ public class Tester extends Employee {
     void addTestType(String testType) {
         assignedTests.add(testType);
     }
+
+    @Override
+    int calculateSalary() {
+        return super.calculateSalary() + assignedTests.size() * 300;
+    }
 }
